@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+
+  <title>Crazy Domme Giveaway</title>
+</head>
+<body>
+  <h1>Crazy Domme Giveaway</h1>
+  <div id="userInput">
+    <input type="text" id="username" placeholder="Enter your username">
+    <button onclick="addUsername()">Namen einreichen</button>
+  </div>
+  
+  <div id="scoreInput" style="display: none;">
+    <input type="text" id="userScore" placeholder="Enter username">
+    <input type="text" id="score" placeholder="Enter your score">
+    <button onclick="enterScore()">Spielstand eingeben</button>
+    <button onclick="removeTwoLowest()">Auf Wiedersehen (aus)</button>
+  </div>
+
+  <button id="displayListButton" style="display: none;" onclick="displayUserList()">Participant</button>
+  <ul id="userList" style="display: none;"></ul>
+
+  <h2>Anzeigetafel</h2>
+  <ul id="leaderboard"></ul>
+
+  <button onclick="initialize()">Neues Spiel starten</button>
+
+  <script>
+    let users = [];
+    let scores = [];
+
+    function initialize() {
+      users = [];
+      scores = [];
+      document.getElementById("userInput").style.display = "block";
+      document.getElementById("scoreInput").style.display = "none";
+      document.getElementById("displayListButton").style.display = "none";
+      document.getElementById("userList").style.display = "none";
+      document.getElementById("leaderboard").innerHTML = "";
+    }
+
+    function addUsername() {
+      const username = document.getElementById("username").value;
+      if (username && users.length < 8) {
+        users.push(username);
+        scores.push(null); // Placeholder for score
+        document.getElementById("username").value = "";
+        if (users.length === 8) {
+          document.getElementById("userInput").style.display = "none";
+          document.getElementById("scoreInput").style.display = "block";
+          document.getElementById("displayListButton").style.display = "inline-block";
+        }
+        displayUserList();
+      }
+    }
+
+    function enterScore() {
+      const user = document.getElementById("userScore").value;
+      const score = parseFloat(document.getElementById("score").value); // Parse as float for decimal support
+      if (!isNaN(score) && users.includes(user)) {
+        const index = users.indexOf(user);
+        scores[index] = score;
+        document.getElementById("score").value = "";
+        updateLeaderboard();
+      }
+    }
+
+    function updateLeaderboard() {
+      const combined = users.map((user, index) => ({ user, score: scores[index] ?? -Infinity }));
+      combined.sort((a, b) => b.score - a.score);
+      users = combined.map(item => item.user);
+      scores = combined.map(item => item.score);
+      displayLeaderboard();
+    }
+
+    function displayLeaderboard() {
+      const leaderboard = document.getElementById("leaderboard");
+      leaderboard.innerHTML = "";
+      let eliminationIndex = users.length - 2; // Default elimination index for more than 2 users
+      if (users.length === 2) eliminationIndex = 1; // Adjust if only 2 users remain
+      
+      users.forEach((user, index) => {
+        if (index === eliminationIndex) { // Place "Next to be Eliminated" accordingly
+          const eliminatedItem = document.createElement("li");
+          eliminatedItem.textContent = "-----Eliminated------";
+          leaderboard.appendChild(eliminatedItem);
+        }
+        const listItem = document.createElement("li");
+        const scoreText = scores[index] !== null ? ` - Score: ${scores[index]}` : " - Score: Pending";
+        listItem.textContent = `${user}${scoreText}`;
+        if (users.length === 1 && index === 0) { // Display "Win!" if only one user remains
+          listItem.textContent += " - Glückwunsch!";
+        }
+        leaderboard.appendChild(listItem);
+      });
+    }
+
+    function removeTwoLowest() {
+      if (users.length > 2) {
+        const scoresWithIndices = scores.map((score, index) => ({ score, index })).filter(obj => obj.score !== null);
+        scoresWithIndices.sort((a, b) => a.score - b.score);
+        // Determine how many to eliminate
+        const eliminationCount = users.length > 2 ? 2 : 1;
+        const lowestIndices = scoresWithIndices.slice(0, eliminationCount).map(obj => obj.index);
+        users = users.filter((_, index) => !lowestIndices.includes(index));
+        scores = scores.filter((_, index) => !lowestIndices.includes(index));
+      } else if (users.length === 2) {
+        // If only two users left, remove the one with the lower score
+        const lowerScoreIndex = scores[0] < scores[1] ? 0 : 1;
+        users.splice(lowerScoreIndex, 1);
+        scores.splice(lowerScoreIndex, 1);
+      }
+      updateLeaderboard(); // Update leaderboard to reflect the new state
+    }
+
+    function displayUserList() {
+      const userList = document.getElementById("userList");
+      userList.innerHTML = "";
+      users.forEach(user => {
+        const listItem = document.createElement("li");
+        listItem.textContent = user;
+        userList.appendChild(listItem);
+      });
+      document.getElementById("userList").style.display = "block";
+    }
+  </script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
