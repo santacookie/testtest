@@ -21,6 +21,13 @@ h2 {
   font-size: 1.5em; /* Default size */
 }
 
+ul, ol {
+  list-style-type: none; /* This removes bullet points or numbers */
+  padding: 0; /* Removes padding, especially on the left side typically used for indenting */
+  margin: 0; /* Removes default margin */
+}
+
+
 #userInput, #scoreInput, #leaderboard, #userList {
   background-color: #fff;
   padding: 20px;
@@ -40,17 +47,25 @@ input[type="text"], button {
   box-sizing: border-box; /* Include padding and border in element's width */
 }
 
+.eliminated-text {
+  text-align: center;
+  color: red; /* Make the text red */
+  font-weight: bold; /* Make the text bold */
+}
+
+
 button {
-  background-color: #760980;
-  color: #fff;
+  background-color: #001a66d9;
+  color: #ffffff;
   border: none;
-  padding: 10px;
+  padding:10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 button:hover {
-  background-color: #020d18;
+  background-color: #6f6c71e2;
 }
 
 @media (max-width: 768px) {

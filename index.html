@@ -3,32 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://kit.fontawesome.com/7ac85cb289.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="style.css">
 
   <title>Crazy Domme Giveaway</title>
 </head>
 <body>
-  <h2>Crazy Domme Giveaway</h2>
+  <h2><i class="fa-solid fa-trophy" style="color: #131212;"> Crazy Domme Giveaway</i></h2>
   <div id="userInput">
     <input type="text" id="username" placeholder="Enter your username">
-    <button onclick="addUsername()">Add username</button>
+    <button onclick="addUsername()"><i class="fa-solid fa-user-plus" style="color: #FFD43B;"> NAME </i></button>
   </div>
   
   <div id="scoreInput" style="display: none;">
     <input type="text" id="userScore" placeholder="Enter username">
     <input type="text" id="score" placeholder="Enter your score">
-    <button onclick="enterScore()">input score</button>
-    <button onclick="removeTwoLowest()">Out</button>
+    <button onclick="enterScore()"><i class="fa-solid fa-plus" style="color: #44e827;"> Update Score</i></button>
   </div>
 
-  <button id="displayListButton" style="display: none;" onclick="displayUserList()">Participant</button>
+  <h2 id="displayListButton" style="display: none;" onclick="displayUserList()"><i class="fa-solid fa-user-secret" style="color: #131212;"> Participant</i></h2>
   <ul id="userList" style="display: none;"></ul>
 
-  <h2>Score</h2>
+  <h2><i class="fa-solid fa-star" style="color: #131212;"> Score board</i></h2>
   <ul id="leaderboard"></ul>
 
-  <button onclick="initialize()">Start New game</button>
+  <button onclick="removeTwoLowest()"><i class="fa-solid fa-skull-crossbones" style="color: #ea8787;"> kick user</i></button>
+  <button onclick="initialize()"><i class="fa-regular fa-star"> Start New game</i></button>
+  
 
   <script>
     let users = [];
@@ -78,27 +80,30 @@
       displayLeaderboard();
     }
 
+    
     function displayLeaderboard() {
-      const leaderboard = document.getElementById("leaderboard");
-      leaderboard.innerHTML = "";
-      let eliminationIndex = users.length - 2; // Default elimination index for more than 2 users
-      if (users.length === 2) eliminationIndex = 1; // Adjust if only 2 users remain
-      
-      users.forEach((user, index) => {
-        if (index === eliminationIndex) { // Place "Next to be Eliminated" accordingly
-          const eliminatedItem = document.createElement("li");
-          eliminatedItem.textContent = "-----Eliminated------";
-          leaderboard.appendChild(eliminatedItem);
-        }
-        const listItem = document.createElement("li");
-        const scoreText = scores[index] !== null ? ` - Score: ${scores[index]}` : " - Score: Pending";
-        listItem.textContent = `${user}${scoreText}`;
-        if (users.length === 1 && index === 0) { // Display "Win!" if only one user remains
-          listItem.textContent += " - Glückwunsch!";
-        }
-        leaderboard.appendChild(listItem);
-      });
+  const leaderboard = document.getElementById("leaderboard");
+  leaderboard.innerHTML = "";
+  let eliminationIndex = users.length - 2;
+  if (users.length === 2) eliminationIndex = 1;
+  
+  users.forEach((user, index) => {
+    if (index === eliminationIndex) {
+      const eliminatedItem = document.createElement("li");
+      eliminatedItem.className = "eliminated-text"; // Apply the new CSS class for bold and red text
+      eliminatedItem.innerHTML = '<i class="fa-solid fa-skull-crossbones"></i> -------------Next to be Eliminated---------------';
+      leaderboard.appendChild(eliminatedItem);
     }
+    const listItem = document.createElement("li");
+    const scoreText = scores[index] !== null ? ` - Score: ${scores[index]}` : " - Score: Pending";
+    listItem.innerHTML = `${user}${scoreText}`;
+    if (users.length === 1 && index === 0) {
+      listItem.innerHTML += " - Glückwunsch!";
+    }
+    leaderboard.appendChild(listItem);
+  });
+}
+
 
     function removeTwoLowest() {
       if (users.length > 2) {
