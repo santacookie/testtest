@@ -9,26 +9,26 @@
   <title>Crazy Domme Giveaway</title>
 </head>
 <body>
-  <h1>Crazy Domme Giveaway</h1>
+  <h2>Crazy Domme Giveaway</h2>
   <div id="userInput">
     <input type="text" id="username" placeholder="Enter your username">
-    <button onclick="addUsername()">Namen einreichen</button>
+    <button onclick="addUsername()">Add username</button>
   </div>
   
   <div id="scoreInput" style="display: none;">
     <input type="text" id="userScore" placeholder="Enter username">
     <input type="text" id="score" placeholder="Enter your score">
-    <button onclick="enterScore()">Spielstand eingeben</button>
-    <button onclick="removeTwoLowest()">Auf Wiedersehen (aus)</button>
+    <button onclick="enterScore()">input score</button>
+    <button onclick="removeTwoLowest()">Out</button>
   </div>
 
   <button id="displayListButton" style="display: none;" onclick="displayUserList()">Participant</button>
   <ul id="userList" style="display: none;"></ul>
 
-  <h2>Anzeigetafel</h2>
+  <h2>Score</h2>
   <ul id="leaderboard"></ul>
 
-  <button onclick="initialize()">Neues Spiel starten</button>
+  <button onclick="initialize()">Start New game</button>
 
   <script>
     let users = [];

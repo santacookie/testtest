@@ -1,65 +1,80 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-    
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  text-align: center; /* Center aligns text */
+}
+
+h1, h2 {
+  color: #444;
+  margin: 0 0 20px; /* Adds margin to the bottom */
+}
+
+/* Responsive font sizes for h1 and h2 */
+h1 {
+  font-size: 2em; /* Default size */
+}
+
+h2 {
+  font-size: 1.5em; /* Default size */
+}
+
+#userInput, #scoreInput, #leaderboard, #userList {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px auto; /* Centers the blocks and adds margin on the top and bottom */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%; /* Ensure full width on smaller screens */
+  max-width: 800px; /* Maximum width */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  text-align: left; /* Aligns text to the left inside the elements */
+}
+
+input[type="text"], button {
+  width: 100%; /* Full width for better mobile responsiveness */
+  padding: 10px;
+  margin: 10px 0; /* Adds margin on top and bottom for spacing */
+  box-sizing: border-box; /* Include padding and border in element's width */
+}
+
+button {
+  background-color: #760980;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #020d18;
+}
+
+@media (max-width: 768px) {
+  h1 {
+      font-size: 1.75em; /* Smaller size for small devices */
   }
-  h1, h2 {
-    color: #444;
+
+  h2 {
+      font-size: 1.25em; /* Smaller size for small devices */
   }
+}
+
+@media (min-width: 768px) {
   #userInput, #scoreInput, #leaderboard, #userList {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 60%; /* Adjust this value as needed */
-    max-width: 1000px; /* Optional: sets a maximum width */
+      width: 60%; /* Adjust width for larger screens */
   }
+
   input[type="text"] {
-    padding: 5px;
-    margin-right: 5px;
-    border: 5px solid #ccc;
-    border-radius: 5px;
-    width: calc(40% - 120px);
+      width: calc(50% - 20px); /* Adjust input width on larger screens, accounting for margin */
+      margin-right: 10px; /* Add margin between input fields */
   }
+
   button {
-    background-color: #760980;
-    color: #fff;
-    border: none;
-    padding: 10px 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+      width: auto; /* Auto width for buttons to fit content */
+      padding: 10px 20px; /* Larger padding for buttons */
   }
-  button:hover {
-    background-color: #020d18;
-  }
-  ol {
-    counter-reset: list-counter;
-    list-style: none;
-    padding-left: 0;
-  }
-  ol li {
-    counter-increment: list-counter;
-    margin-bottom: 10px;
-  }
-  ol li:before {
-    content: counter(list-counter) ". ";
-    font-weight: bold;
-    color: #760980;
-  }
-  div#leaderboard div, ol li.eliminated::before {
-    content: "Next to be Eliminated";
-    font-style: italic;
-    color: #ff4500;
-    display: block;
-    margin-bottom: 5px;
-  }
-  ol li.win::before {
-    content: "Winner!";
-    color: #28a745;
-  }
-  
+}
