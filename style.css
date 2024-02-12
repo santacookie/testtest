@@ -30,13 +30,14 @@ ul, ol {
 
 #userInput, #scoreInput, #leaderboard, #userList {
   font-family: 'Rubik', sans-serif;
-  background-color: rgba(16, 16, 43, 0.85);
+  background-color: rgba(0, 1, 58, 0.899);
   padding: 20px;
   margin: 10px auto; /* Centers the blocks and adds margin on the top and bottom */
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ 
   width: 100%; /* Ensure full width on smaller screens */
   max-width: 800px; /* Maximum width */
+  min-height: 200px;
   box-sizing: border-box; /* Ensure padding is included in the width */
   text-align: left; /* Aligns text to the left inside the elements */
 }
