@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <script src="https://kit.fontawesome.com/7ac85cb289.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="original.css">
 
   <title>Crazy Domme Giveaway</title>
 </head>
@@ -91,7 +91,7 @@
     if (index === eliminationIndex) {
       const eliminatedItem = document.createElement("li");
       eliminatedItem.className = "eliminated-text"; // Apply the new CSS class for bold and red text
-      eliminatedItem.innerHTML = '<i class="fa-solid fa-skull-crossbones"></i> Eliminated';
+      eliminatedItem.innerHTML = '<i class="fa-solid fa-skull-crossbones"></i> ---------Next to be Eliminated----------';
       leaderboard.appendChild(eliminatedItem);
     }
     const listItem = document.createElement("li");

@@ -1,0 +1,95 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center; /* Center aligns text */
+  }
+  
+  h1, h2 {
+    color: #444;
+    margin: 0 0 20px; /* Adds margin to the bottom */
+  }
+  
+  /* Responsive font sizes for h1 and h2 */
+  h1 {
+    font-size: 2em; /* Default size */
+  }
+  
+  h2 {
+    font-size: 1.5em; /* Default size */
+  }
+  
+  ul, ol {
+    list-style-type: none; /* This removes bullet points or numbers */
+    padding: 0; /* Removes padding, especially on the left side typically used for indenting */
+    margin: 0; /* Removes default margin */
+  }
+  
+  
+  #userInput, #scoreInput, #leaderboard, #userList {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px auto; /* Centers the blocks and adds margin on the top and bottom */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%; /* Ensure full width on smaller screens */
+    max-width: 800px; /* Maximum width */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    text-align: left; /* Aligns text to the left inside the elements */
+  }
+  
+  input[type="text"], button {
+    width: 100%; /* Full width for better mobile responsiveness */
+    padding: 10px;
+    margin: 10px 0; /* Adds margin on top and bottom for spacing */
+    box-sizing: border-box; /* Include padding and border in element's width */
+  }
+  
+  .eliminated-text {
+    text-align: center;
+    color: red; /* Make the text red */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  button {
+    background-color: #001a66d9;
+    color: #ffffff;
+    border: none;
+    padding:10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+  }
+  
+  button:hover {
+    background-color: #6f6c71e2;
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+        font-size: 1.75em; /* Smaller size for small devices */
+    }
+  
+    h2 {
+        font-size: 1.25em; /* Smaller size for small devices */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #userInput, #scoreInput, #leaderboard, #userList {
+        width: 60%; /* Adjust width for larger screens */
+    }
+  
+    input[type="text"] {
+        width: calc(50% - 20px); /* Adjust input width on larger screens, accounting for margin */
+        margin-right: 10px; /* Add margin between input fields */
+    }
+  
+    button {
+        width: auto; /* Auto width for buttons to fit content */
+        padding: 10px 20px; /* Larger padding for buttons */
+    }
+  }
+  

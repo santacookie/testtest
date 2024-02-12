@@ -1,7 +1,7 @@
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Rubik', sans-serif;
   background-color: #f0f0f0;
-  color: #333;
+  color: #ffffff;
   margin: 0;
   padding: 20px;
   text-align: center; /* Center aligns text */
@@ -29,7 +29,8 @@ ul, ol {
 
 
 #userInput, #scoreInput, #leaderboard, #userList {
-  background-color: #fff;
+  font-family: 'Rubik', sans-serif;
+  background-color: rgba(16, 16, 43, 0.85);
   padding: 20px;
   margin: 10px auto; /* Centers the blocks and adds margin on the top and bottom */
   border-radius: 10px;
@@ -48,14 +49,13 @@ input[type="text"], button {
 }
 
 .eliminated-text {
-  text-align: center;
+  font-family: 'Rubik', sans-serif;
   color: red; /* Make the text red */
   font-weight: bold; /* Make the text bold */
 }
 
-
 button {
-  background-color: #001a66d9;
+  background-color: #160d1b;
   color: #ffffff;
   border: none;
   padding:10px;
