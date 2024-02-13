@@ -45,7 +45,7 @@
       document.getElementById("userList").style.display = "none";
       document.getElementById("leaderboard").innerHTML = "";
     }
-/* 
+
     function addUsername() {
       const username = document.getElementById("username").value;
       if (username && users.length < 8) {
@@ -59,37 +59,9 @@
         }
         displayUserList();
       }
-    } */
-
-  /*   function addUsername() {
-    const username = document.getElementById("username").value.trim();
-    if (username && !users.includes(username)) { // Check if username is not already added
-      users.push(username);
-      scores.push(0); // Initialize with score 0 instead of null for consistency
-      document.getElementById("username").value = "";
-      displayUserList();
-      if (users.length >= 1) {
-        document.getElementById("scoreInput").style.display = "block";
-        document.getElementById("displayListButton").style.display = "inline-block";
-      }
     }
-  } */
 
-  function addUsername() {
-    const username = document.getElementById("username").value.trim();
-    if (username && !users.includes(username)) { // Check if username is not already added
-      users.push(username);
-      scores.push(0); // Initialize with score 0 instead of null for consistency
-      document.getElementById("username").value = "";
-      displayUserList();
-      if (users.length >= 1) {
-        document.getElementById("scoreInput").style.display = "block";
-        document.getElementById("displayListButton").style.display = "inline-block";
-      }
-    }
-  }
-
- /*    function enterScore() {
+    function enterScore() {
       const user = document.getElementById("userScore").value;
       const score = parseFloat(document.getElementById("score").value); // Parse as float for decimal support
       if (!isNaN(score) && users.includes(user)) {
@@ -98,37 +70,17 @@
         document.getElementById("score").value = "";
         updateLeaderboard();
       }
-    } */
-
-    function enterScore() {
-    const user = document.getElementById("userScore").value;
-    const score = parseFloat(document.getElementById("score").value); // Parse as float for decimal support
-    if (!isNaN(score) && users.includes(user)) {
-      const index = users.indexOf(user);
-      scores[index] = score;
-      document.getElementById("userScore").value = "";
-      document.getElementById("score").value = "";
-      updateLeaderboard();
     }
-  }
 
-  /*   function updateLeaderboard() {
+    function updateLeaderboard() {
       const combined = users.map((user, index) => ({ user, score: scores[index] ?? 0 }));
       combined.sort((a, b) => b.score - a.score);
       users = combined.map(item => item.user);
       scores = combined.map(item => item.score);
       displayLeaderboard();
-    } */
+    }
 
-    function updateLeaderboard() {
-    const combined = users.map((user, index) => ({ user, score: scores[index] }));
-    combined.sort((a, b) => b.score - a.score);
-    users = combined.map(item => item.user);
-    scores = combined.map(item => item.score);
-    displayLeaderboard();
-  }
     
-
     function displayLeaderboard() {
   const leaderboard = document.getElementById("leaderboard");
   leaderboard.innerHTML = "";
@@ -152,23 +104,20 @@
   });
 }
 
-
-    function removeTwoLowest() {
-      if (users.length > 2) {
-        const scoresWithIndices = scores.map((score, index) => ({ score, index })).filter(obj => obj.score !== null);
-        scoresWithIndices.sort((a, b) => a.score - b.score);
-        // Determine how many to eliminate
-        const eliminationCount = users.length > 2 ? 2 : 1;
-        const lowestIndices = scoresWithIndices.slice(0, eliminationCount).map(obj => obj.index);
-        users = users.filter((_, index) => !lowestIndices.includes(index));
-        scores = scores.filter((_, index) => !lowestIndices.includes(index));
-      } else if (users.length === 2) {
-        // If only two users left, remove the one with the lower score
-        const lowerScoreIndex = scores[0] < scores[1] ? 0 : 1;
-        users.splice(lowerScoreIndex, 1);
-        scores.splice(lowerScoreIndex, 1);
-      }
-      // After removal, reset remaining users' scores to 0
+function removeTwoLowest() {
+    if (users.length > 2) {
+      const scoresWithIndices = scores.map((score, index) => ({ score, index })).filter(obj => obj.score !== null);
+      scoresWithIndices.sort((a, b) => a.score - b.score);
+      const eliminationCount = users.length > 2 ? 2 : 1;
+      const lowestIndices = scoresWithIndices.slice(0, eliminationCount).map(obj => obj.index);
+      users = users.filter((_, index) => !lowestIndices.includes(index));
+      scores = scores.filter((_, index) => !lowestIndices.includes(index));
+    } else if (users.length === 2) {
+      const lowerScoreIndex = scores[0] < scores[1] ? 0 : 1;
+      users.splice(lowerScoreIndex, 1);
+      scores.splice(lowerScoreIndex, 1);
+    }
+    // After removal, reset remaining users' scores to 0
     resetScores();
     updateLeaderboard(); // Update leaderboard to reflect the new state
   }
